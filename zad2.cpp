@@ -66,7 +66,7 @@ Wezel* korzen;
         }
         return aktualny;
     }
-    
+
         // Usuwa wszystkie elementy z drzewa.
     void UsunCaleDrzewo(Wezel* wezel) {
         if (wezel != nullptr) {
@@ -95,5 +95,24 @@ Wezel* korzen;
             return SzukajRekurencyjnie(wezel->lewy, klucz);
         }
         return SzukajRekurencyjnie(wezel->prawy, klucz);
+    }
+
+        // Wyświetla elementy drzewa w porządku rosnącym.
+    void WyswietlDrzewo(Wezel* wezel) {
+        if (wezel != nullptr) {
+            WyswietlDrzewo(wezel->lewy);
+            std::cout << wezel->klucz << " ";
+            WyswietlDrzewo(wezel->prawy);
+        }
+    }
+ 
+    // Metoda dostępu do korzenia drzewa (getter).
+    Wezel* PobierzKorzen() {
+        return korzen;
+    }
+ 
+    // Metoda dostępu do ustawiania korzenia drzewa (setter).
+    void UstawKorzen(Wezel* nowyKorzen) {
+        korzen = nowyKorzen;
     }
 };
