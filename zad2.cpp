@@ -66,4 +66,34 @@ Wezel* korzen;
         }
         return aktualny;
     }
+    
+        // Usuwa wszystkie elementy z drzewa.
+    void UsunCaleDrzewo(Wezel* wezel) {
+        if (wezel != nullptr) {
+            UsunCaleDrzewo(wezel->lewy);
+            UsunCaleDrzewo(wezel->prawy);
+            delete wezel;
+        }
+    }
+ 
+    // Szuka drogi do elementu o podanym kluczu.
+    void SzukajDrogi(int klucz) {
+        Wezel* wynik = SzukajRekurencyjnie(korzen, klucz);
+        if (wynik != nullptr) {
+            std::cout << "Znaleziono element " << klucz << " w drzewie." << std::endl;
+        } else {
+            std::cout << "Element " << klucz << " nie został znaleziony w drzewie." << std::endl;
+        }
+    }
+ 
+    // Funkcja pomocnicza dla SzukajDrogi do szukania rekurencyjnie.
+    Wezel* SzukajRekurencyjnie(Wezel* wezel, int klucz) {
+        if (wezel == nullptr || wezel->klucz == klucz) {
+            return wezel;
+        }
+        if (klucz < wezel->klucz) {
+            return SzukajRekurencyjnie(wezel->lewy, klucz);
+        }
+        return SzukajRekurencyjnie(wezel->prawy, klucz);
+    }
 };
