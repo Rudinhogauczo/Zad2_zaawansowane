@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include "Klasy2.h"
 #include "Klasy1.h"
 int main() {
     DrzewoBST drzewo;
