@@ -6,6 +6,7 @@ int main() {
     DrzewoBST drzewo;
     int opcja;
     int klucz;
+    std::string nazwaPlikuZapisu;
  
     while (true) {
         std::cout << std::endl;
@@ -16,6 +17,7 @@ int main() {
         std::cout << "3. Usun calkowicie drzewo" << std::endl;
         std::cout << "4. Szukaj drogi do elementu" << std::endl;
         std::cout << "5. Wyswietl drzewo" << std::endl;
+        std::cout << "6. Zapisz drzewo do pliku" << std::endl;
         std::cout << "0. Wyjscie" << std::endl;
         std::cout << "Wybierz opcje: ";
         std::cin >> opcja;
@@ -46,6 +48,11 @@ int main() {
                 std::cout << "Drzewo BST: ";
                 drzewo.WyswietlDrzewo(drzewo.PobierzKorzen());
                 std::cout << std::endl;
+                break;
+            case 6:
+                std::cout << "Podaj nazwę pliku do zapisu drzewa: ";
+                std::cin >> nazwaPlikuZapisu;
+                ZapisOdczytDrzewa::ZapiszDoPliku(drzewo, nazwaPlikuZapisu);
                 break;
             case 0:
                 std::cout << "Wyjscie z programu." << std::endl;

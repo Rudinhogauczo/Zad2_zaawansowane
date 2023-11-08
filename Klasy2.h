@@ -15,6 +15,16 @@ public:
         }
     }
 
+private:
+    static void ZapiszDrzewoDoPliku(DrzewoBST::Wezel* wezel, std::ostream& strumien) {
+        if (wezel == nullptr) {
+            return;
+        }
+        strumien.write(reinterpret_cast<const char*>(&wezel->klucz), sizeof(wezel->klucz));
+        ZapiszDrzewoDoPliku(wezel->lewy, strumien);
+        ZapiszDrzewoDoPliku(wezel->prawy, strumien);
+    }
+
 };
 
 #endif
