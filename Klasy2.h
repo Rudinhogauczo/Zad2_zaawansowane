@@ -53,4 +53,21 @@ private:
 
 };
 
+class WczytywaniePliku {
+public:
+    static void WczytajPlikTekstowy(const std::string& nazwaPliku, DrzewoBST& drzewo) {
+        std::ifstream plik(nazwaPliku);
+        if (plik.is_open()) {
+            int liczba;
+            while (plik >> liczba) {
+                drzewo.DodajElement(liczba);
+            }
+            plik.close();
+            std::cout << "Liczby zostały wczytane z pliku tekstowego '" << nazwaPliku << "'." << std::endl;
+        } else {
+            std::cerr << "Błąd podczas otwierania pliku tekstowego do odczytu." << std::endl;
+        }
+    }
+};
+
 #endif
