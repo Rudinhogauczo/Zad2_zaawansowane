@@ -1,5 +1,6 @@
 #ifndef Klasy1
 #define Klasy1
+#include <vector>
 
 class DrzewoBST {
 public:
@@ -79,23 +80,32 @@ Wezel* korzen;
  
     // Szuka drogi do elementu o podanym kluczu.
     void SzukajDrogi(int klucz) {
-        Wezel* wynik = SzukajRekurencyjnie(korzen, klucz);
+        std::vector <int> droga = {};
+        Wezel* wynik = SzukajRekurencyjnie(korzen, klucz, droga);   
         if (wynik != nullptr) {
             std::cout << "Znaleziono element " << klucz << " w drzewie." << std::endl;
+            std::cout << "Droga do elementu " << klucz << " wygląda następująco: ";
+            for (int i : droga)
+            {
+                std::cout << i << "->";
+            }
+            std::cout << klucz << std::endl;
         } else {
             std::cout << "Element " << klucz << " nie został znaleziony w drzewie." << std::endl;
         }
     }
  
     // Funkcja pomocnicza dla SzukajDrogi do szukania rekurencyjnie.
-    Wezel* SzukajRekurencyjnie(Wezel* wezel, int klucz) {
+    Wezel* SzukajRekurencyjnie(Wezel* wezel, int klucz, std::vector <int> &droga) {
         if (wezel == nullptr || wezel->klucz == klucz) {
             return wezel;
         }
         if (klucz < wezel->klucz) {
-            return SzukajRekurencyjnie(wezel->lewy, klucz);
+            droga.push_back(wezel->klucz);
+            return SzukajRekurencyjnie(wezel->lewy, klucz, droga);
         }
-        return SzukajRekurencyjnie(wezel->prawy, klucz);
+        droga.push_back(wezel->klucz);
+        return SzukajRekurencyjnie(wezel->prawy, klucz, droga);
     }
 
         // Wyświetla elementy drzewa w porządku rosnącym.
