@@ -66,7 +66,7 @@ int main() {
             case 8:
                 std::cout << "Podaj nazwę pliku tekstowego do wczytania liczb: ";
                 std::cin >> nazwaPlikuTekstowego;
-                WczytywaniePliku::WczytajPlikTekstowy(nazwaPlikuTekstowego, drzewo);
+                ZapisOdczytDrzewa::WczytajPlikTekstowy(nazwaPlikuTekstowego, drzewo);
                 break;
             case 0:
                 std::cout << "Wyjscie z programu." << std::endl;
