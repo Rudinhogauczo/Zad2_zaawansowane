@@ -7,6 +7,7 @@ int main() {
     int opcja;
     int klucz;
     std::string nazwaPlikuZapisu;
+    std::string nazwaPlikuOdczytu;
  
     while (true) {
         std::cout << std::endl;
@@ -18,6 +19,7 @@ int main() {
         std::cout << "4. Szukaj drogi do elementu" << std::endl;
         std::cout << "5. Wyswietl drzewo" << std::endl;
         std::cout << "6. Zapisz drzewo do pliku" << std::endl;
+        std::cout << "7. Odczytaj drzewo z pliku" << std::endl;
         std::cout << "0. Wyjscie" << std::endl;
         std::cout << "Wybierz opcje: ";
         std::cin >> opcja;
@@ -53,6 +55,11 @@ int main() {
                 std::cout << "Podaj nazwę pliku do zapisu drzewa: ";
                 std::cin >> nazwaPlikuZapisu;
                 ZapisOdczytDrzewa::ZapiszDoPliku(drzewo, nazwaPlikuZapisu);
+                break;
+            case 7:
+                std::cout << "Podaj nazwę pliku do odczytu drzewa: ";
+                std::cin >> nazwaPlikuOdczytu;
+                drzewo = ZapisOdczytDrzewa::OdczytajZPliku(nazwaPlikuOdczytu);
                 break;
             case 0:
                 std::cout << "Wyjscie z programu." << std::endl;
