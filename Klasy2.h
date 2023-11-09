@@ -19,7 +19,10 @@ public:
         DrzewoBST drzewo;
         std::ifstream plik(nazwaPliku, std::ios::binary);
         if (plik.is_open()) {
-            drzewo.UstawKorzen(OdczytajDrzewoZPliku(plik));
+            int klucz;
+            while (plik.read(reinterpret_cast<char*>(&klucz), sizeof(klucz))) {
+                drzewo.DodajElement(klucz);
+            }
             plik.close();
             std::cout << "Drzewo zostało odczytane z pliku '" << nazwaPliku << "'." << std::endl;
         } else {
@@ -48,23 +51,10 @@ private:
         if (wezel == nullptr) {
             return;
         }
-        strumien.write(reinterpret_cast<const char*>(&wezel->klucz), sizeof(wezel->klucz));
+        strumien.write(reinterpret_cast<const char*>(&wezel->klucz), sizeof(wezel->klucz));    
         ZapiszDrzewoDoPliku(wezel->lewy, strumien);
-        ZapiszDrzewoDoPliku(wezel->prawy, strumien);
+        ZapiszDrzewoDoPliku(wezel->prawy, strumien);  
     }
-
-    static DrzewoBST::Wezel* OdczytajDrzewoZPliku(std::istream& strumien) {
-        int klucz;
-        strumien.read(reinterpret_cast<char*>(&klucz), sizeof(klucz));
-        if (strumien.eof()) {
-            return nullptr;
-        }
-        DrzewoBST::Wezel* wezel = new DrzewoBST::Wezel(klucz);
-        wezel->lewy = OdczytajDrzewoZPliku(strumien);
-        wezel->prawy = OdczytajDrzewoZPliku(strumien);
-        return wezel;
-    }
-
 };
 
 
